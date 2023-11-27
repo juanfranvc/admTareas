@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 function App() {
   
@@ -38,6 +38,13 @@ function App() {
   const eliminarTarea = (tareaId) => {
     setTareas(tareas.filter((tarea) => tarea.id !== tareaId));
   }
+
+  useEffect(() => {
+    setMsj('Lista actualizada')
+    setTimeout(() => {
+      setMsj('');
+    }, 1500);
+  }, [tareas]);
 
   return (
     <div>
@@ -85,9 +92,9 @@ function App() {
         </div>
 
       </div>
-
-      <div>{msj}</div>
-
+      <div className="flex justify-center">
+        <span className="bg-indigo-900 text-center text-white text-2xl rounded-md">{msj}</span>
+      </div>
     </div>
   )
 }
